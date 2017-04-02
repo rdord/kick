@@ -1,6 +1,7 @@
 import 'normalize.css'
 import '../css/main.css'
 import FastClick from 'fastclick'
+import '../js/modernizr.touchevents.js'
 
 FastClick.attach(document.body);
 
@@ -24,19 +25,19 @@ function playAudioOnKey(e) {
 }
 
 function playAudioOnMouse(e) {
-  if(e.type === 'mousedown') {
+  if(e.type === 'mousedown' || e.type === 'touchstart') {
     e.target.classList.add('is-active')
     playAudio(e.target.dataset.key)
   } 
   else e.target.classList.remove('is-active')
 }
 
-window.addEventListener('keydown', playAudioOnKey, false)
-window.addEventListener('keyup', playAudioOnKey, false)
+window.addEventListener('keydown', playAudioOnKey)
+window.addEventListener('keyup', playAudioOnKey)
 
 const pads = document.querySelectorAll('.pad')
 
 pads.forEach((pad) => {
-  pad.addEventListener('mousedown', playAudioOnMouse, false)
-  pad.addEventListener('mouseup', playAudioOnMouse, false)
+  pad.addEventListener((Modernizr.touchevents) ? 'touchstart' : 'mousedown', playAudioOnMouse)
+  pad.addEventListener((Modernizr.touchevents) ? 'touchend' : 'mouseup', playAudioOnMouse)
 })
