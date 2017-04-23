@@ -4,7 +4,7 @@ html, body {
 
 body {
   margin: 0;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 .main {
@@ -15,7 +15,7 @@ body {
   background-color: coral;*/
   background-color: blanchedalmond;
   max-width: 1000px;
-  padding: 8px;
+  padding: 25px 8px 0;
   margin-left: 57px;
 }
 
